@@ -1,30 +1,53 @@
-/// <reference types="cypress" />
+// cypress/tests/ui/login.spec.ts
+
 import LoginPage from '../../pages/LoginPage';
 
-describe('Custom user flow', () => {
+describe('The Login Page', () => {
+  const loginPage = new LoginPage();
+
   beforeEach(() => {
-    // limpia sesión si aplica
-    cy.clearCookies();
-    cy.clearLocalStorage();
+    // Reset y seed de la base de datos
+    cy.task('db:seed');
+    
+    // Obtener usuario del seed
+    cy.database('find', 'users').then((user: any) => {
+      cy.wrap(user).as('currentUser');
+    });
   });
 
-  it('logs in and performs a basic flow', () => {
-    // usa credenciales de test (si el proyecto tiene fixtures o users de prueba)
-    const email = Cypress.env('E2E_USER_EMAIL') || 'test@local.invalid';
-    const password = Cypress.env('E2E_USER_PASSWORD') || 'password123';
+  it('sets auth cookie when logging in via form submission', function () {
+    const { username } = this.currentUser;
 
-    LoginPage.login(email, password);
+    loginPage.visit();
+    cy.get('#username').type(username);
+    cy.get('#password').type(`s3cret{enter}`);
 
-    // espera y verifica que el login funcione
-    LoginPage.assertLoggedIn();
+    // Verificamos redirección
+    cy.url().should('not.include', '/signin');
 
-    // ejemplo de flujo: navegar a "profile", editar y guardar
-    cy.get('a[data-cy=profile-link]').click();
-    cy.url().should('include', '/profile');
+    // Cookie de auth debe existir
+    cy.getCookie('connect.sid').should('exist');
 
-    cy.get('input[name="displayName"]').clear().type('Tester CI');
-    cy.get('button[data-cy=save-profile]').click();
+    // UI refleja usuario logueado - verificamos que el home esté visible
+    cy.get('[data-test="sidenav-home"]').should('be.visible');
+  });
 
-    cy.contains('Profile updated').should('be.visible');
+  it('logs in using page object', function () {
+    const { username } = this.currentUser;
+
+    loginPage.visit();
+    loginPage.login(username, 's3cret');
+
+    cy.url().should('not.include', '/signin');
+    cy.get('[data-test="sidenav-home"]').should('be.visible');
+  });
+
+  it('shows error with invalid credentials', () => {
+    loginPage.visit();
+    loginPage.login('invalid_user', 'wrong_pass');
+
+    cy.get('[data-test="signin-error"]')
+      .should('be.visible')
+      .and('contain', 'Username or password is invalid');
   });
 });
