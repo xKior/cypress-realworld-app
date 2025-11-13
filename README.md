@@ -302,3 +302,441 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!!
+
+
+# 🚀 Cypress RealWorld App - CI/CD Pipeline
+
+![CI Pipeline](https://github.com/[TU_USUARIO]/cypress-realworld-app/workflows/CI%20Pipeline/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=[PROJECT_KEY]&metric=alert_status)](https://sonarcloud.io/dashboard?id=[PROJECT_KEY])
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=[PROJECT_KEY]&metric=coverage)](https://sonarcloud.io/dashboard?id=[PROJECT_KEY])
+
+Pipeline CI/CD completo con testing automatizado usando **GitHub Actions**, **Cypress** y **SonarCloud** para la aplicación Cypress RealWorld App.
+
+## 📋 Tabla de Contenidos
+
+- [Características](#-características)
+- [Requisitos Previos](#-requisitos-previos)
+- [Instalación](#-instalación)
+- [Uso](#-uso)
+- [Testing](#-testing)
+- [CI/CD Pipeline](#-cicd-pipeline)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Configuración](#-configuración)
+- [Contribuir](#-contribuir)
+- [Licencia](#-licencia)
+
+## ✨ Características
+
+- ✅ **Pipeline CI/CD automatizado** con GitHub Actions
+- ✅ **Tests E2E** con Cypress y patrón Page Object Model
+- ✅ **Tests Unitarios** automatizados
+- ✅ **Análisis de calidad** con SonarCloud
+- ✅ **Artifacts automáticos** (screenshots y videos)
+- ✅ **Retry logic** para tests flaky
+- ✅ **TypeScript** para type safety
+- ✅ **Quality Gates** configurados
+
+## 📦 Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- **Node.js** 18+ - [Descargar](https://nodejs.org/)
+- **npm** 9+ (incluido con Node.js)
+- **Git** - [Descargar](https://git-scm.com/)
+- **Cuenta GitHub** - [Registrarse](https://github.com/)
+- **Cuenta SonarCloud** (opcional) - [Registrarse](https://sonarcloud.io/)
+
+## 🔧 Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/[TU_USUARIO]/cypress-realworld-app.git
+cd cypress-realworld-app
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar base de datos
+
+```bash
+npm run db:seed
+```
+
+### 4. Iniciar la aplicación
+
+```bash
+npm start
+```
+
+La aplicación estará disponible en: http://localhost:3000
+
+## 🎮 Uso
+
+### Credenciales de prueba
+
+Después de ejecutar `npm run db:seed`, puedes usar cualquier usuario del seed:
+
+```
+Username: Katharina_Bernier
+Password: s3cret
+```
+
+### Comandos disponibles
+
+```bash
+# Desarrollo
+npm start                  # Inicia la aplicación en modo desarrollo
+npm run dev               # Alias de npm start
+
+# Testing
+npm run test:unit         # Ejecuta tests unitarios
+npm run cypress:open      # Abre Cypress UI para desarrollo
+npm run cypress:run       # Ejecuta Cypress en modo headless
+
+# Base de datos
+npm run db:seed           # Seed de la base de datos con datos de prueba
+npm run db:reset          # Resetea la base de datos
+
+# Build
+npm run build             # Compila la aplicación para producción
+```
+
+## 🧪 Testing
+
+### Tests Unitarios
+
+```bash
+npm run test:unit
+```
+
+Los tests unitarios verifican la lógica de negocio y componentes individuales.
+
+### Tests E2E con Cypress
+
+#### Modo Interactivo (Desarrollo)
+
+```bash
+npm run cypress:open
+```
+
+Abre la interfaz gráfica de Cypress donde puedes:
+- Ver tests en tiempo real
+- Debuggear paso a paso
+- Inspeccionar elementos
+
+#### Modo Headless (CI/CD)
+
+```bash
+npm run cypress:run
+```
+
+Ejecuta todos los tests en modo headless, generando:
+- Videos de las ejecuciones
+- Screenshots en caso de fallos
+- Reportes en consola
+
+### Page Object Model
+
+Los tests utilizan el patrón Page Object Model para mejor mantenibilidad:
+
+```typescript
+// cypress/pages/LoginPage.ts
+import LoginPage from '../../pages/LoginPage';
+
+const loginPage = new LoginPage();
+
+loginPage.visit();
+loginPage.login('username', 'password');
+```
+
+### Estructura de Tests
+
+```
+cypress/
+├── pages/
+│   └── LoginPage.ts           # Page Object para Login
+├── tests/
+│   └── ui/
+│       └── login.spec.ts      # Tests de autenticación
+├── screenshots/               # Screenshots de fallos
+└── videos/                    # Videos de ejecuciones
+```
+
+## 🔄 CI/CD Pipeline
+
+### Arquitectura del Pipeline
+
+```mermaid
+graph LR
+    A[Push/PR] --> B[Unit Tests]
+    B --> C[E2E Tests]
+    C --> D[SonarCloud]
+    C --> E[Artifacts]
+    D --> F[Quality Gate]
+```
+
+### Jobs del Pipeline
+
+#### 1. Unit Tests
+- Ejecuta tests unitarios
+- Verifica compilación TypeScript
+- Tiempo: ~10 segundos
+
+#### 2. E2E Tests
+- Inicia la aplicación
+- Ejecuta tests de Cypress
+- Genera artifacts (screenshots/videos)
+- Tiempo: ~20 segundos
+
+#### 3. SonarCloud Analysis
+- Analiza calidad de código
+- Verifica cobertura
+- Detecta vulnerabilidades
+- Tiempo: ~25 segundos
+
+### Triggers
+
+El pipeline se ejecuta automáticamente en:
+
+- ✅ Push a `main` o `master`
+- ✅ Pull Requests a `main` o `master`
+
+### Artifacts
+
+Los siguientes artifacts se generan automáticamente:
+
+| Artifact | Condición | Retención |
+|----------|-----------|-----------|
+| Screenshots | Solo en fallos | 7 días |
+| Videos | Siempre | 7 días |
+
+### Ver Resultados
+
+1. Ve a la pestaña **Actions** en GitHub
+2. Selecciona la ejecución más reciente
+3. Revisa los logs de cada job
+4. Descarga artifacts si es necesario
+
+## 📁 Estructura del Proyecto
+
+```
+cypress-realworld-app/
+├── .github/
+│   └── workflows/
+│       └── ci.yml                 # Configuración del pipeline
+├── cypress/
+│   ├── pages/
+│   │   └── LoginPage.ts          # Page Object Model
+│   ├── tests/
+│   │   └── ui/
+│   │       └── login.spec.ts     # Tests E2E
+│   ├── support/
+│   │   ├── commands.ts           # Comandos personalizados
+│   │   └── e2e.ts                # Setup global
+│   ├── screenshots/              # Screenshots generados
+│   └── videos/                   # Videos generados
+├── src/                          # Código fuente de la app
+├── data/                         # Base de datos SQLite
+├── cypress.config.ts             # Configuración de Cypress
+├── sonar-project.properties      # Configuración de SonarCloud
+├── package.json
+└── README.md
+```
+
+## ⚙️ Configuración
+
+### GitHub Secrets
+
+Para que el pipeline funcione correctamente, configura estos secrets en GitHub:
+
+1. Ve a: `Settings → Secrets and variables → Actions`
+2. Agrega los siguientes secrets:
+
+| Secret | Descripción | Obligatorio |
+|--------|-------------|-------------|
+| `SONAR_TOKEN` | Token de autenticación SonarCloud | ✅ |
+| `SONAR_ORG` | Organization de SonarCloud | ✅ |
+| `SONAR_PROJECT_KEY` | Key del proyecto en SonarCloud | ✅ |
+
+### SonarCloud Setup
+
+1. **Crear cuenta** en https://sonarcloud.io
+2. **Importar repositorio** desde GitHub
+3. **Copiar tokens** generados
+4. **Agregar secrets** en GitHub (ver arriba)
+
+### Cypress Configuration
+
+Personaliza la configuración en `cypress.config.ts`:
+
+```typescript
+export default defineConfig({
+  e2e: {
+    baseUrl: 'http://localhost:3000',
+    defaultCommandTimeout: 10000,
+    video: true,
+    screenshotOnRunFailure: true,
+    retries: {
+      runMode: 2,  // Reintentos en CI
+      openMode: 0  // Sin reintentos en desarrollo
+    }
+  }
+});
+```
+
+## 🐛 Troubleshooting
+
+### Error: "Cannot find module"
+
+```bash
+# Limpiar e instalar dependencias
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Tests fallan localmente
+
+```bash
+# Resetear base de datos
+npm run db:reset
+npm run db:seed
+
+# Verificar que la app esté corriendo
+npm start
+```
+
+### Tests pasan localmente pero fallan en CI
+
+Esto suele ser un problema de timing. Los tests ya incluyen timeouts extendidos para CI:
+
+```typescript
+cy.get('[data-test="element"]', { timeout: 10000 })
+```
+
+### Ver logs detallados de Cypress
+
+```bash
+DEBUG=cypress:* npm run cypress:run
+```
+
+## 📊 Métricas y Reportes
+
+### SonarCloud Dashboard
+
+Ve las métricas de calidad en:
+```
+https://sonarcloud.io/project/overview?id=[PROJECT_KEY]
+```
+
+Métricas disponibles:
+- 📈 Cobertura de código
+- 🐛 Bugs detectados
+- 🔒 Vulnerabilidades
+- 💡 Code smells
+- 🔄 Duplicación de código
+
+### GitHub Actions Dashboard
+
+Ve el historial de ejecuciones en:
+```
+https://github.com/[TU_USUARIO]/cypress-realworld-app/actions
+```
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Sigue estos pasos:
+
+### 1. Fork del proyecto
+
+```bash
+# Click en "Fork" en GitHub
+```
+
+### 2. Crear rama de feature
+
+```bash
+git checkout -b feature/nueva-funcionalidad
+```
+
+### 3. Hacer cambios y commit
+
+```bash
+git add .
+git commit -m "feat: Agregar nueva funcionalidad"
+```
+
+Usa [Conventional Commits](https://www.conventionalcommits.org/):
+- `feat:` - Nueva funcionalidad
+- `fix:` - Corrección de bug
+- `docs:` - Cambios en documentación
+- `test:` - Agregar/modificar tests
+- `refactor:` - Refactorización de código
+
+### 4. Push y Pull Request
+
+```bash
+git push origin feature/nueva-funcionalidad
+```
+
+Luego crea un Pull Request en GitHub.
+
+### Guidelines
+
+- ✅ Todos los tests deben pasar
+- ✅ Agregar tests para nuevas funcionalidades
+- ✅ Mantener cobertura > 80%
+- ✅ Seguir style guide del proyecto
+- ✅ Actualizar documentación si es necesario
+
+## 📚 Recursos
+
+### Documentación
+
+- [Cypress Documentation](https://docs.cypress.io/)
+- [GitHub Actions Documentation](https://docs.github.com/actions)
+- [SonarCloud Documentation](https://docs.sonarcloud.io/)
+- [Cypress RealWorld App Original](https://github.com/cypress-io/cypress-realworld-app)
+
+### Tutoriales
+
+- [Cypress Best Practices](https://docs.cypress.io/guides/references/best-practices)
+- [Page Object Model Pattern](https://martinfowler.com/bliki/PageObject.html)
+- [CI/CD with GitHub Actions](https://docs.github.com/en/actions/guides)
+
+### Comunidad
+
+- [Cypress Discord](https://discord.gg/cypress)
+- [Stack Overflow - Cypress Tag](https://stackoverflow.com/questions/tagged/cypress)
+- [GitHub Discussions](https://github.com/cypress-io/cypress/discussions)
+
+## 📝 Changelog
+
+### [1.0.0] - 2025-11-13
+
+#### Added
+- ✨ Pipeline CI/CD completo con GitHub Actions
+- ✨ Tests E2E con Cypress y Page Object Model
+- ✨ Integración con SonarCloud
+- ✨ Generación automática de artifacts
+- ✨ Documentación completa
+
+#### Fixed
+- 🐛 Timeouts extendidos para estabilidad en CI
+- 🐛 Configuración duplicada en workflow
+- 🐛 Selectores estables para tests
+
+
+## 🙏 Agradecimientos
+
+- Cypress.io por la aplicación RealWorld App
+- GitHub por Actions gratuitas
+- SonarCloud por análisis de código gratuito para open source
+- Comunidad de Cypress por soporte y recursos
+
+---
+
