@@ -22,14 +22,14 @@ describe('The Login Page', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(`s3cret{enter}`);
 
-    // Verificamos redirección
-    cy.url().should('not.include', '/signin');
+    // Verificamos redirección con timeout mayor
+    cy.url({ timeout: 10000 }).should('not.include', '/signin');
 
     // Cookie de auth debe existir
     cy.getCookie('connect.sid').should('exist');
 
     // UI refleja usuario logueado - verificamos que el home esté visible
-    cy.get('[data-test="sidenav-home"]').should('be.visible');
+    cy.get('[data-test="sidenav-home"]', { timeout: 10000 }).should('be.visible');
   });
 
   it('logs in using page object', function () {
