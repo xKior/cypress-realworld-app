@@ -51,7 +51,7 @@ jobs:
           npx wait-on http://localhost:3000 -t 300000
 
       - name: Run Cypress tests (uses official cypress action)
-        uses: cypress-io/github-action@v6.10.4
+        uses: cypress-io/github-action@53299cbe789c64daab823c4bfb1882d05e9feaf3
         with:
           browser: chrome
           start: npm run start
@@ -86,7 +86,7 @@ jobs:
         run: npm ci
 
       - name: Run SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@v5.0.0
+        uses: SonarSource/sonarcloud-github-action@ba3875ecf642b2129de2b589510c81a8b53dbf4e
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
