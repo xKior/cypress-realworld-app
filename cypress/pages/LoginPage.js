@@ -1,7 +1,7 @@
 // cypress/pages/LoginPage.js
 class LoginPage {
   visit() {
-    cy.visit('/login'); // ajusta la ruta si es otra
+    cy.visit('/login'); // ajusta la ruta si es o
   }
 
   fillEmail(email) {
