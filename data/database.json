@@ -3,12 +3,12 @@
     {
       "id": "uBmeaz5pX",
       "uuid": "3b63b436-cacc-457a-a3e8-c962ef9838ac",
-      "firstName": "New First Name",
-      "lastName": "New Last Name",
+      "firstName": "Ted",
+      "lastName": "Parisian",
       "username": "Heath93",
       "password": "$2a$10$nSaCsTPTtbbPTnFXBH0GZu0ExpNMud3d1IuKOC/6a9gwAHkdhppeu",
-      "email": "email@email.com",
-      "phoneNumber": "6155551212",
+      "email": "Santos.Runte65@gmail.com",
+      "phoneNumber": "398-225-9900",
       "avatar": "https://avatars.dicebear.com/api/human/uBmeaz5pX.svg",
       "defaultPrivacyLevel": "public",
       "balance": 150953,
@@ -74,17 +74,6 @@
       "balance": 49474,
       "createdAt": "2023-12-07T04:39:38.383Z",
       "modifiedAt": "2024-03-07T00:07:36.510Z"
-    },
-    {
-      "id": "bqIxNAim4",
-      "uuid": "91fd9216-85ee-4481-84f2-3fd2badcf485",
-      "firstName": "Angel",
-      "lastName": "Vega",
-      "username": "xKior",
-      "password": "$2a$10$oAXi2cO4IVtTqdIo2B/kNOHlEcJfFulHcpYldGfwl4Iy1cuXTcvbi",
-      "balance": 0,
-      "createdAt": "2025-11-13T01:09:46.849Z",
-      "modifiedAt": "2025-11-13T01:09:46.849Z"
     }
   ],
   "contacts": [
@@ -111,14 +100,6 @@
       "contactUserId": "GjWovtg2hr",
       "createdAt": "2024-02-21T09:25:04.637Z",
       "modifiedAt": "2024-03-07T15:28:30.214Z"
-    },
-    {
-      "id": "we6vSy6zNB",
-      "uuid": "ac38fe0a-1f7f-4821-adf7-d4f38a6cac80",
-      "userId": "GjWovtg2hr",
-      "contactUserId": "_XblMqbuoP",
-      "createdAt": "2024-01-02T00:46:09.367Z",
-      "modifiedAt": "2024-03-06T22:47:52.887Z"
     },
     {
       "id": "ZtkafKkTyM",
@@ -264,17 +245,6 @@
       "isDeleted": false,
       "createdAt": "2024-01-26T14:01:01.815Z",
       "modifiedAt": "2024-03-07T08:44:31.174Z"
-    },
-    {
-      "id": "2CV8pmQmo",
-      "uuid": "d448438b-28dd-4e11-89f7-6b6be3c17aa4",
-      "userId": "bqIxNAim4",
-      "bankName": "nequi",
-      "accountNumber": "454654564",
-      "routingNumber": "445645645",
-      "isDeleted": false,
-      "createdAt": "2025-11-13T01:10:07.677Z",
-      "modifiedAt": "2025-11-13T01:10:07.677Z"
     }
   ],
   "transactions": [
