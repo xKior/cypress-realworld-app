@@ -306,11 +306,21 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 # 🚀 Cypress RealWorld App - CI/CD Pipeline
 
+Se completo correctamente la actividad implementando el pipeline ci/cd bien hecho este es el link del repositorio del fork con el pipiline configurado:https://github.com/xKior/cypress-realworld-app, ademas en el repositorio se encuentra un archivo pdf llamado pipiline Ci en donde hay un análisis de resultados.
+Estos son los screenshot del dashboard de SonarCloud mostrando métricas:
+<img width="1897" height="947" alt="image" src="https://github.com/user-attachments/assets/24108071-b1d1-42d0-a3ea-79e7e5e7b9c8" />
+<img width="1907" height="887" alt="image" src="https://github.com/user-attachments/assets/9670e8d1-4959-4cbb-855d-87bac9333356" />
+<img width="1831" height="884" alt="image" src="https://github.com/user-attachments/assets/a5f0b740-7465-4550-b440-56f934a95190" />
+
+y este es el link del video explicativo:
+
+
 ![CI Pipeline](https://github.com/[TU_USUARIO]/cypress-realworld-app/workflows/CI%20Pipeline/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=[PROJECT_KEY]&metric=alert_status)](https://sonarcloud.io/dashboard?id=[PROJECT_KEY])
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=[PROJECT_KEY]&metric=coverage)](https://sonarcloud.io/dashboard?id=[PROJECT_KEY])
 
 Pipeline CI/CD completo con testing automatizado usando **GitHub Actions**, **Cypress** y **SonarCloud** para la aplicación Cypress RealWorld App.
+
 
 ## 📋 Tabla de Contenidos
 
@@ -351,7 +361,7 @@ Antes de comenzar, asegúrate de tener instalado:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/[TU_USUARIO]/cypress-realworld-app.git
+git clone https://github.com/xKior/cypress-realworld-app.git
 cd cypress-realworld-app
 ```
 
