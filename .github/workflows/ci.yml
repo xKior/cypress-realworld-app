@@ -54,7 +54,7 @@ jobs:
         uses: cypress-io/github-action@53299cbe789c64daab823c4bfb1882d05e9feaf3
         with:
           browser: chrome
-          start: npm run start
+          start: yarn dev
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 300000
           run-tests: npm run cypress:run
