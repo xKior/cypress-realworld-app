@@ -312,7 +312,7 @@ Estos son los screenshot del dashboard de SonarCloud mostrando métricas:
 <img width="1907" height="887" alt="image" src="https://github.com/user-attachments/assets/9670e8d1-4959-4cbb-855d-87bac9333356" />
 <img width="1831" height="884" alt="image" src="https://github.com/user-attachments/assets/a5f0b740-7465-4550-b440-56f934a95190" />
 
-y este es el link del video explicativo:
+y este es el link del video explicativo: https://youtu.be/nPEKVMPddOw 
 
 
 ![CI Pipeline](https://github.com/[TU_USUARIO]/cypress-realworld-app/workflows/CI%20Pipeline/badge.svg)
